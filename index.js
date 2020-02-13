@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
 
-function runaqaTest(version, buildList, target) {
+async function runaqaTest(version, buildList, target) {
   process.env.BUILD_LIST = buildList
   process.env.TEST_JDK_HOME = process.env.JAVA_HOME
   await exec.exec('ls')

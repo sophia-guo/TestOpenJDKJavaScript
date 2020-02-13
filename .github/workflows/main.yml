@@ -1,0 +1,23 @@
+name: "build-test"
+on: # rebuild any PRs and main branch changes
+  push
+
+jobs:
+  build: # make sure build/ci work properly
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install
+      run: sudo apt-get update && sudo apt-get -y install ant-contrib bash
+    - uses: actions/checkout@v1
+    - name: GetJDK
+      uses: TheMrMilchmann/install-jdk@v1
+      with:
+        version: '8'
+        architecture: x64
+    - name: Aqa
+      uses: ./
+      with: 
+        version: '8'
+        architecture: x64
+        build_list: 'openjdk'
+        target: '_jdk_custom'
